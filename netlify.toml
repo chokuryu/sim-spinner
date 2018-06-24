@@ -1,0 +1,64 @@
+[Settings]
+#ID = ""
+
+# Settings in the [build] context are global and are applied to all contexts unless otherwise overridden by more specific contexts.
+
+[build]
+  # This is the directory to change to before starting a build.
+#  base    = ""
+#  publish = "dist/"
+  # This will be your default build command
+#  command = "echo 'default context'"
+  # This is where we will look for your lambda functions
+#  functions = "project/functions/"
+
+# Production context: All deploys from the Production branch set in your site's deploy settings will inherit these settings.
+[context.production]
+#  publish = "dist/"
+#  command = "make publish"
+#  environment = { ACCESS_TOKEN = "super secret", NODE_ENV = "8.0.1" }
+
+# Deploy Preview context: All Deploy Previews (https://www.netlify.com/blog/2016/07/20/introducing-deploy-previews-in-netlify/)
+# will inherit these settings.
+#[context.deploy-preview]
+#  publish = "dist/"
+# Here is another way to define context specific environment variables
+#[context.deploy-preview.environment]
+#  ACCESS_TOKEN = "not so secret"
+
+# Branch Deploy context: All deploys that are not resulting from a Pull/Merge Request and not from the primary, linked branch will inherit these settings.
+#[context.branch-deploy]
+#  command = "echo branch"
+#[context.branch-deploy.environment]
+#  NODE_ENV = "development"
+
+# Specific branch context: Deploys from this branch
+# will take these settings and override their
+# current ones.
+#[context.staging] # 'staging' is a branch name
+#  command = "echo 'staging'"
+#  base = "staging"
+
+# For contexts of branches with special characters, enclose the branch name with quotes
+#[context."feat/branch"]
+#  command = "echo 'special branch'"
+#  base = "branch"
+
+# The following redirect is intended for use with most SPA's that handles routing internally.
+[[redirects]]
+  from = "/SPA/*"
+  to = "/_spa.html"
+  status = 200
+
+[[headers]]
+  for = "/*" # This defines which paths this specific [[headers]] block will cover.
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Content-Security-Policy = "frame-ancestors https://www.facebook.com"
+
+    # Basic-Auth allows you to password protect your whole site but is only available
+    # to paid accounts
+    # Basic-Auth = "someuser:somepassword anotheruser:anotherpassword"
+    Basic-Auth = "nk:8mayarawa"
+
