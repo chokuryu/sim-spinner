@@ -1,0 +1,74 @@
+<template>
+  <div>
+    <!--Unique Parameter For Circle-->
+    <div class="row siimple-label">
+      <label>Name:</label>
+      <div><input type="text" class="siimple-input" v-model="name" value=""/></div>
+    </div>
+    <div class="row siimple-label">
+      <label>Type:</label>
+      <div><input type="text" class="siimple-input dis" v-model="type" value="" readonly/></div>
+    </div>
+    <div class="row siimple-label">
+      <label>Text:</label>
+      <div><input type="text" class="siimple-input" v-model="text" value=""/></div>
+    </div>
+    <div class="row siimple-label">
+      <label>Posision:</label>
+      <div><input type="range" max="50" min="-50" step="10" class="siimple-input" v-model.number="posY" value=""/>
+          <span>{{ posY }}</span><span class="afterfield"> px</span></div>
+    </div>
+    <div class="row siimple-label">
+      <label>color R:</label>
+      <div><input type="range" max="255" min="0" step="1" class="siimple-input" v-model.number="colorR" value=""/>
+          <span>({{ colorR }})</span></div>
+    </div>
+    <div class="row siimple-label">
+      <label>color G:</label>
+      <div><input type="range" max="255" min="0" step="1" class="siimple-input" v-model.number="colorG" value=""/>
+          <span>({{ colorG }})</span></div>
+    </div>
+    <div class="row siimple-label">
+      <label>color B:</label>
+      <div><input type="range" max="255" min="0" step="1" class="siimple-input" v-model.number="colorB" value=""/>
+          <span>({{ colorB }})</span></div>
+    </div>
+
+  </div>
+</template>
+
+<script>
+import Store from '@/scripts/Store'
+import FactorDefinition from '@/scripts/FactorDefinition'
+const FACTOR_TYPE = 'TEXT'
+
+export default {
+  name: 'TextEditorView',
+  components: {
+
+  },
+  props: ['fid'],
+  data () {
+    return Store.referFactor(this.fid)
+  },
+
+  computed: {
+
+  },
+  watch: (()=>{
+    let PROPS = FactorDefinition.getEditorObserbedParameter(FACTOR_TYPE)
+    let watchMethods = Store.createParameterWatcheMethods(PROPS)
+    return watchMethods
+  })(),
+  methods: {
+
+  }
+}
+
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+
+</style>
