@@ -1,3 +1,4 @@
+
 // Do not using post css loader
 import '@/extlib/fontawesome-free/css/all.css'
 import '@/extlib/siimple_custom.css'
@@ -76,7 +77,7 @@ function createAppVM() {
   })
 
 }
-createAppVM()
+setTimeout( createAppVM, 0 )
 
 //
 // Store.initializeAsync('normal').then(()=>{

@@ -1,62 +1,59 @@
 <template>
   <div class="doc-page">
 
-    <div class="my-horizontalSpacer half"></div>
+    <doc-navi-bar-view></doc-navi-bar-view>
 
-    <div class="">
-      <div class="spacer"></div>
-      <logo></logo>
-    </div>
+    <section class="doc-fullWideSection topback-landing" >
 
-    <div class="xmy-horizontalSpacer half"></div>
+      <div class="my-horizontalSpacer large"></div>
+      <div class="my-horizontalSpacer large"></div>
 
-    <section class="doc-fullWideSection   xmy-container">
-      <table class="my-commonFieldTable">
-        <tr>
-          <td><label class="siimple-label">Mail:</label></td>
-          <td><input type="text" class="siimple-input" v-model="uid" value=""/></td>
-        </tr>
-        <tr>
-          <td><label class="siimple-label">Password:</label></td>
-          <td><input type="password" class="siimple-input" v-model="pass" value=""/></td>
-        </tr>
-        <tr class="">
-          <td></td>
-          <td>
-            <div class="my-horizontalSpacer micro"></div>
-            <a @click="signIn" class="siimple-btn siimple-btn--blue btn-1"
-            ><i class=""></i>Sign In</a>
-          </td>
-        </tr>
-      </table>
-    </section>
-
-    <div class="my-horizontalSpacer large"></div>
-
-    <section class="doc-fullWideSection my-backColor1">
-      <div class="doc-toolIcons">
-        <i class="fas fa-sync fa-3x doc-grayIconColor"></i>
+      <div class="doc-topback-texts">
+        <h1 class="siimple-h1">Create and manage your original spinner</h1>
+        <div class="">
+          <p>自分だけのスピナーをつくりましょう。シムスピナーはあなたのWeb製作シーンにおけるスピナー作りをサポートするツールです。</p>
+        </div>
+        <br/>
+        <a @click="sgueToSignUpEntry"  class="siimple-btn siimple-btn--yellow">Get started for free</a>
       </div>
-      <h2 class="siimple-h3">Create your spinner</h2>
-      <div class="doc-content">
-        <p>自分だけのスピナーをつくりましょう。シムスピナーはあなたのWeb製作シーンにおけるインディケーター作りをサポートします。</p>
-        <p>このWebサイトは練習用につくったダミーのWebサービスなのでサービス登録などはできませんが、上の「Sign in」ボタンを押すとその機能を試すことができます。もし気に入ったら、いつかサービス化されるのを待ちましょう！</p>
-      </div>
-      <br/>
-      <router-link tag="a" to="/sign_up_page" class="siimple-btn siimple-btn--orange">Sign up someday</router-link>
       <div class="my-horizontalSpacer"></div>
     </section>
 
+    <div class="my-horizontalSpacer"></div>
+
     <section class="doc-fullWideSection">
-      <div class="doc-toolIcons">
-        <i class="fas fa-book fa-3x doc-grayIconColor"></i>
+      <div class="my-horizontalSpacer"></div>
+      <div style="color:#d5e2f5;">
+        <span class="fa-stack fa-4x">
+          <i class="fas fa-circle fa-stack-2x"></i>
+          <i class="fas fa-child fa-stack-1x fa-inverse"></i>
+        </span>
       </div>
-      <h2 class="siimple-h3">Design Note</h2>
+      <h2 class="siimple-h3">There is no service available</h2>
+
       <div class="doc-content">
-        <p>このSPA（シングル・ページ・アプリケーション）は個人的なフロントエンドの練習用につくりました。どのようにデザインされているかをここに書き記しているのでぜひチェックしてみてください。</p>
+        <p>このWebサイトは練習用につくったダミーのWebサービスなのでサービス登録などはできませんが、誰でもログイン画面から入って機能を試すことができます。もし気に入ったら、いつかサービス化されるのを待ちましょう！</p>
+      </div>
+
+      <br/>
+      <a @click="sgueToLoginEntry" class="siimple-btn siimple-btn--teal">Try it now</a>
+      <div class="my-horizontalSpacer"></div>
+    </section>
+
+    <section class="doc-fullWideSection my-backColor1">
+      <div class="my-horizontalSpacer"></div>
+      <div style="color:#a8c8ea;">
+        <span class="fa-stack fa-4x">
+          <i class="fas fa-square fa-stack-2x fa-inverse"></i>
+          <i class="fas fa-book fa-stack-1x"></i>
+        </span>
+      </div>
+      <h2 class="siimple-h3">Production note</h2>
+      <div class="doc-content">
+        <p>このSPA（シングル・ページ・アプリケーション）は個人的なフロントエンドの練習用につくりました。どのようにつくったかをここに書き記しているのでぜひチェックしてみてください。</p>
       </div>
       <br/>
-      <router-link tag="a" :to="{ name: '@=design' }" class="siimple-btn siimple-btn--teal">Check it</router-link>
+      <router-link tag="a" :to="{ name: '@=design' }" class="siimple-btn siimple-btn--teal">Check features</router-link>
       <div class="my-horizontalSpacer"></div>
     </section>
 
@@ -67,19 +64,18 @@
 
 
 <script>
-import Logo from '../Logo'
+import DocNaviBarView from '../DocNaviBarView'
 import PageFootView from '../PageFootView'
 
 export default {
   name: 'TopPage',
   components: {
-    Logo,
+    DocNaviBarView,
     PageFootView
   },
   data () {
     return {
-      uid: 'guest@mail.comcom',
-      pass: 'guest'
+
     }
   },
   props: [],
@@ -87,13 +83,11 @@ export default {
 
   },
   methods: {
-    signIn() {
-      this.$router.push({
-        name: '@=under_login',
-        query: {
-          segueToName: '@=home'
-        }
-      })
+    sgueToLoginEntry() {
+      this.$router.push({ name: '@=login_entry' })
+    },
+    sgueToSignUpEntry() {
+      this.$router.push({ name: '@=sign_up_entry' })
     }
   }
 }
@@ -103,12 +97,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-.spacer {
-  height: 5vh;
-}
-.btn-1 {
-  width: 108px;
-}
+
 
 .doc-toolIcons {
   margin: 20px 0 0 0;
@@ -118,15 +107,19 @@ export default {
 }
 
 /*
-h2, h3 {
-  margin: 6px auto 4px auto;
-}
-
-
-.topFoot {
-  padding: 20px 0;
-}
 */
+
+.topback-landing {
+  background-color: #3f79bb;
+  /*background-image: linear-gradient(356deg, #ffffff, #ffffff, #c8def9, #7eb4f1, #4a99ff);*/
+  /*background-image: linear-gradient(356deg, #ffffff, #ffffff, #ffffff, #c8def9, #3f79bb, #1a254a);*/
+  background-image: linear-gradient(356deg, #ffffff, #ffffff, #ffffff, #c8def9, #3f8abb, #1a254a);
+  padding-bottom: 400px;
+  margin-bottom: -400px;
+}
+
+
+
 
 
 

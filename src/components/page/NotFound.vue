@@ -58,11 +58,11 @@ export default {
 
   methods: {
 
-    // App original listener to catch display update timing
-    beforeStartFadeIn() {
-      //console.log('beforeStartFadeIn')
-      this.reflectValues()
-    },
+    // // App original listener to catch display update timing
+    // beforeStartFadeIn() {
+    //   //console.log('beforeStartFadeIn')
+    //   this.reflectValues()
+    // },
 
     setValues(wrongType, wrongPath) {
       if (!wrongType || !wrongPath) {

@@ -3,10 +3,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 //import SetupPage from '@/components/page/SetupPage'
-import UnderLoginPage from '@/components/page/UnderLoginPage'
-import NeedSignInPage from '@/components/page/NeedSignInPage'
 import TopPage from '@/components/page/TopPage'
 import DesignPage from '@/components/page/DesignPage'
+
+import SignUpEntryPage from '@/components/page/SignUpEntryPage'
+import LoginEntryPage from '@/components/page/LoginEntryPage'
+import UnderLoginPage from '@/components/page/UnderLoginPage'
+import NeedSignInPage from '@/components/page/NeedSignInPage'
 import HomePage from '@/components/page/HomePage'
 import WorkPage from '@/components/page/WorkPage/WorkPage'
 import PreviewPage from '@/components/page/PreviewPage'
@@ -20,6 +23,7 @@ Vue.use(Router)
 
 // Set navigation guard to Page-Component if needed
 import NavigationGuard from '@/scripts/NavigationGuard'
+NavigationGuard.attach(LoginEntryPage)
 NavigationGuard.attach(HomePage)
 NavigationGuard.attach(WorkContent)
 NavigationGuard.attach(FactorContent)
@@ -34,10 +38,19 @@ export default new Router({
   mode: 'history',
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
-      return savedPosition
+      return(savedPosition)
     } else {
-      return { x: 0, y: 0 }
+      return({ x: 0, y: 0 })
     }
+    // return new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     if (savedPosition) {
+    //       resolve(savedPosition)
+    //     } else {
+    //       resolve({ x: 0, y: 0 })
+    //     }
+    //   }, 0);
+    // });
   },
 
   // 公開Webサイト適合パス設定③
@@ -72,7 +85,7 @@ export default new Router({
       name: '@=design',
       component: DesignPage,
       meta: {
-        title: 'SimSpinner'
+        title: 'SimSpinner | design'
       }
     }
     ,
@@ -80,6 +93,24 @@ export default new Router({
     // Non-Static Only Routes ( /n-s/* )
     // 1. Should set proxy to ~/index.html file.
     // 2. Should keep out for search bot
+    {
+      path: NSO + '/sign_up_entry',
+      name: '@=sign_up_entry',
+      component: SignUpEntryPage,
+      meta: {
+        title: 'SimSpinner | sign up'
+      }
+    }
+    ,
+    {
+      path: NSO + '/login_entry',
+      name: '@=login_entry',
+      component: LoginEntryPage,
+      meta: {
+        title: 'SimSpinner | login'
+      }
+    }
+    ,
     {
       path: NSO + '/under_login',
       name: '@=under_login',

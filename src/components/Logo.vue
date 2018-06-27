@@ -1,7 +1,7 @@
 <template>
 <div class="inner-frame">
   <img src="@/assets/logo.png" class="logo"/>
-  <h1>SimSpinner</h1>
+  <!--<h1>SimSpinner</h1>-->
 </div>
 </template>
 

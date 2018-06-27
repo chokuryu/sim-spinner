@@ -1,19 +1,31 @@
 <template>
   <div class="doc-page">
 
-    <div class="my-horizontalSpacer large"></div>
+    <!-- Head -->
 
-    <div><img src="@/assets/logo.png"/></div>
-    <div class="my-horizontalSpacer micro"></div>
+    <doc-navi-bar-view></doc-navi-bar-view>
 
-    <section class="doc-headline">
-      <i class="fa fa-pencil-alt"></i>
-      <h1 style="padding-right: 20px;">Design Note</h1>
+    <section class="doc-fullWideSection topback-design" >
+
+      <div class="my-horizontalSpacer large"></div>
+      <div class="my-horizontalSpacer large"></div>
+
+      <div class="doc-topback-texts">
+        <h1 class="siimple-h1">Features - This page is only a production note</h1>
+        <div class="">
+          <p>このSPAのつくりやツールについて書いています。自分用のメモでもあります。</p>
+        </div>
+        <br/>
+      </div>
     </section>
+
+
 
     <div class="my-horizontalSpacer x2"></div>
 
-    <section class="doc-fullWideSection my-backColor1">
+    <!-- Main -->
+
+    <section class="doc-fullWideSection">
       <h2 class="siimple-h3">Responsive SPA</h2>
       <div class="doc-content">
         <div class="pictFrame">
@@ -24,72 +36,128 @@
       <div class="my-horizontalSpacer"></div>
     </section>
 
-    <section class="doc-fullWideSection">
-      <h2 class="siimple-h3">Routing and Screen</h2>
+    <section class="doc-fullWideSection my-backColor1">
+      <h2 class="siimple-h3">Screen Transitions</h2>
       <div class="doc-content">
         <div class="pictFrame">
-          <img src="@/assets/about/transition.png" style="box-shadow: 0 0 12px #dfe8f1;"/>
+          <img src="@/assets/about/transition.png" xstyle="box-shadow: 0 0 12px #dfe8f1;"/>
         </div>
-        <p>上図はルーティングと画面の対応関係をまとめたものです。静的なページとSPAの両方をVueのフレームワークでまとめてビルドしています。URL一致のしくみや、プレレンダリングによる静的HTML出力を試しています。</p>
+        <div class="my-horizontalSpacer mini"></div>
+        <p>上図はルーティングと画面の対応関係をまとめたものです。レンダリング済みの静的なHTMLとSPAの機能をまとめてWebpackでビルドしています。Vue-RouterとPrerender-SPA-Pluginはお手軽で、その設定だけでルーティングはうまく動いてくれています。</p>
+        <p>そのままではHTTPリクエストには対応しないSPAのルーティング上でのみ提供するルートは/SPA/配下にパスをまとめてあり、それらのパスへのHTTPリクエストに対しては全て/_spa.htmlというファイルを参照するようプロキシを設定しています。（このプロキシは静的ファイルサーバの設定。）</p>
       </div>
       <div class="my-horizontalSpacer"></div>
     </section>
 
-    <section class="doc-fullWideSection my-backColor1">
-      <h2 class="siimple-h3">Data Store</h2>
+    <section class="doc-fullWideSection">
+      <h2 class="siimple-h3">Saving data in LocalStorage</h2>
       <div class="doc-toolIcons">
-        <i class="fas fa-hdd fa-3x doc-grayIconColor"></i>
+        <i class="fas fa-hdd fa-5x" style="color:#9bb6e0;"></i>
       </div>
       <div class="doc-content">
-        <p>データ永続化にはブラウザのLocalStorageを使っています。</p>
-        <p>プログラム上のVMとのデータ連携はVuex(Fluxライク)などは使わずに、Storeオブジェクトを用いる簡易的なモジュールをスクラッチしました。</p>
-        <p class="siimple-small">（このWebアプリは静的ファイルサーバのみで動作しているただのプロトタイプです。サーバサイドもDBもありません。ユーザセッションもないのでサインインの処理もありません。）</p>
+        <p>このWebアプリではブラウザのLocalStorageにユーザの作業データを保持させています。</p>
+        <p>VM上のデータ連携のしかたはVuex(Fluxライクなしくみ)を使わずに、Storeオブジェクトを用いて値をコンポーネント間で共有しているだけです。（そして適時LocalStorageに保存しています。）</p>
+        <p class="siimple-small">（基本的に静的ファイルのみで構成しているので、DBなどサーバサイドの機能は特に作っていない。）</p>
       </div>
+      <div class="my-horizontalSpacer"></div>
+    </section>
+
+    <!-- Tool -->
+
+    <section class="doc-fullWideSection my-backColor1">
+
+      <h2 class="siimple-h3">Impression for Tools</h2>
+      <div class="doc-content">
+
+        <table class="doc-normalTable toolTable">
+          <tr><th colspan="2">Client-Side Framework, Build tool</th></tr>
+          <tr>
+            <td>
+              <img class="toolIcon" src="@/assets/about/vue.png"/>
+              <div>Vue</div>
+            </td>
+            <td>
+              <p>Vueはスタンドアローン構成で何度か使ってきたが、今回はvue-cliで生成した雛形をそのまま利用して全てjsに事前コンパイルする構成を試した。</p>
+              <p>単一ファイルコンポーネントもはじめて使ったが、別途JS,SCSSファイルも普通に併用できたので、チーム事情に合わせて柔軟に構成できそう。テストツールは試していないけど、vue-loaderなどの処理が介在するぶん複雑になりそう。</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img class="toolIcon" src="@/assets/about/webpack.png"/>
+              <div>Webpack</div>
+            </td>
+            <td>
+              <p>vue-cli生成のconfig構成を基本的にそのまま利用。各種のloaderやpluginが何をやっているのかわかりにくく、意外と複雑。特にvue-loaderのせいだと思うけど、importファイルのパスの解決に介入したりしようとすると訳がわからなくなる。</p>
+              <p>標準的な使い方からあまり外れなければとても素直に働いてくれて非常に快適。</p>
+          </td>
+          </tr>
+        </table>
+
+        <div class="my-horizontalSpacer large"></div>
+
+        <table class="doc-normalTable toolTable">
+          <tr><th colspan="2">UI Library</th></tr>
+          <tr>
+            <td>
+              <img class="toolIcon" src="@/assets/about/siimple.png"/>
+              <div><a href="https://www.siimple.xyz">Siimple</a></div>
+            </td>
+            <td><p>CSSフレームワーク。スクリプトを用いないのでVueと合わせる上でクリーンなのは良い。prefixがちょっと長い(siimple-)。</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <i class="toolIcon fab fa-font-awesome awesomeblue" style="font-size: 4em; line-height: 80px;"></i>
+              <div>Font Awesome</div>
+            </td>
+            <td><p>フォントアイコン。手軽で高機能。今回はWebpackに組み込む上であまりしっくりこなかった。Vueコンポーネントとして使う方法が提供されているようなのでそっち使えばよかったかも。</p></td>
+          </tr>
+        </table>
+
+        <div class="my-horizontalSpacer large"></div>
+
+        <table class="doc-normalTable toolTable">
+          <tr><th colspan="2">Deployment and Source Management</th></tr>
+          <tr>
+            <td>
+              <img class="toolIcon" src="@/assets/about/netlify.svg" style="padding: 10px"/>
+              <div>Netlify</div>
+            </td>
+            <td>
+              <p>どこに公開しようか迷っていたのだがこのサービスを使ってみたらすごく良かった。私のGitHubの指定リポジトリにpushするとNetlifyのサービス側でそれを感知して任意のビルドコマンドを実行し、公開ディレクトリとコンテンツが出力される自動デプロイ構成が簡単にできた。<br/>
+            （例として、このプロジェクトではビルドコマンドに<span class="siimple-code">node build/build.js</span>を指定している。）</p>
+              <p>おかげで、このプロジェクトはproductionブランチをリモートにpushするだけでデプロイが終わる。</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img class="toolIcon" src="@/assets/about/github.png" style="padding: 10px"/>
+              <div>GitHub</div>
+            </td>
+            <td><p>あんまり使っていないけど、プライベートリポジトリには今回のプロジェクトのほか、私が途中で挫折した半端な個人プロジェクトなどが保存されている。</p></td>
+          </tr>
+        </table>
+
+      </div>
+
       <div class="my-horizontalSpacer"></div>
     </section>
 
 
     <section class="doc-fullWideSection">
-      <h2 class="siimple-h3">Framework, Build Tool</h2>
+      <h2 class="siimple-h3">Logo</h2>
+      <div class="bigLogoFrame"><img src="@/assets/logox4.png"/></div>
+      <div class="my-horizontalSpacer micro"></div>
       <div class="doc-content">
-        <div class="doc-toolIcons">
-          <img src="@/assets/about/vue.png"/>
-          <img src="@/assets/about/webpack.png"/>
-        </div>
-        <table class="doc-normalTable">
-          <tr>
-            <td>Vue.js</td>
-            <td><p>vue-cli生成の雛形を使ったが、そのままでもわりと融通がきく。デフォルトのvue-routerを拡張していくだけでもSPAの構造が簡単につくれるので手軽。Vueの単一ファイルコンポーネントを使ったが、単独のJS,SCSSファイルも普通に併用した。</p></td>
-          </tr>
-          <tr>
-            <td>Webpack</td>
-            <td><p>vue-loaderなどの動作を把握しきれずに怖さを感じたものの、構成をシンプルに保てばなんとでもなりそうに感じる。</p></td>
-          </tr>
-        </table>
+        <p>おまけ。ロゴは Affinity Designer で描きました。まあグラフィックはほとんど書かないので適当です。小さく表示するとインパクトがない。。</p>
       </div>
+      <!--<div class="doc-pencilLine">
+        <i class="fa fa-pencil-alt"></i>
+        <span style="padding-right: 20px;">wrriten with Affinity Designer</span>
+      </div>-->
       <div class="my-horizontalSpacer"></div>
     </section>
 
-    <section class="doc-fullWideSection my-backColor1">
-      <h2 class="siimple-h3">Frontend UI Library</h2>
-      <div class="doc-content">
-        <div class="doc-toolIcons">
-          <img src="@/assets/about/siimple.png"/>
-          <i class="fab fa-fort-awesome-alt fa-3x awesomeblue"></i>
-        </div>
-        <table class="doc-normalTable">
-          <tr>
-            <td>Siimple</td>
-            <td><p>スクリプトを用いないCSSフレームワーク。シンプルで使いやすい。prefixがちょっと長い(siimple-)。</p></td>
-          </tr>
-          <tr>
-            <td>Font Awesome</td>
-            <td><p>手軽なアイコンフォント。</p></td>
-          </tr>
-        </table>
-      </div>
-      <div class="my-horizontalSpacer"></div>
-    </section>
 
     <page-foot-view></page-foot-view>
 
@@ -98,11 +166,13 @@
 
 
 <script>
+import DocNaviBarView from '../DocNaviBarView'
 import PageFootView from '../PageFootView'
 
 export default {
   name: 'DesignPage',
   components: {
+    DocNaviBarView,
     PageFootView
   },
   data () {
@@ -137,6 +207,20 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+.topback-design {
+  background-color: #3f79bb;
+  /*background-image: linear-gradient(356deg, #ffffff, #ffffff, #ffffff, #c8ebf9, #3f8dbb, #1a254a);*/
+  background-image: linear-gradient(356deg, #ffffff, #ffffff, #f5fcfd, #98c6ff, #5e96e8, #1a254a);
+  padding-bottom: 200px;
+  margin-bottom: -200px;
+}
+.bigLogoFrame > img {
+  width: 200px; height: 200px;
+}
+
+h2 {
+  margin: 40px;
+}
 
 .pictFrame {
   display: block;
@@ -157,11 +241,23 @@ export default {
 }
 
 .awesomeblue {
-  background-image: linear-gradient(315deg, #2b79d2, #64b0ff);
+  color: #228ae6;
+/*  background-image: linear-gradient(315deg, #2b79d2, #64b0ff);
   color:transparent;
   -webkit-background-clip: text;
-  background-clip: text;
+  background-clip: text;*/
 }
+
+
+.toolTable td:first-child {
+  width: 120px;
+}
+.toolIcon {
+  width: 80px; height: 80px;
+  margin-bottom: 10px;
+}
+
+
 
 
 

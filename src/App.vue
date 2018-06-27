@@ -9,6 +9,9 @@
 
 
 <script>
+//    <link rel="stylesheet" type="text/css" href="@/extlib/fontawesome-free/css/all.css"/>
+//    <link rel="stylesheet" href="@/extlib/siimple_custom.css"/>
+//    <link rel="stylesheet" href="@/css/main.scss"/>
 
 export default {
   name: 'App',
@@ -20,7 +23,7 @@ export default {
       //metaValue: 'meta_value'
     }
   },
-  created() {
+  beforeCreate() {
     attachFadeDuringSegue(this)
   },
   mounted() {
@@ -41,13 +44,17 @@ export default {
  * ページ遷移時のフェードアニメーションをルータのイベントに追加
  */
 function attachFadeDuringSegue(appVm) {
-
+/*
   function getMask() {
     return document.querySelector('.mask')
   }
 
+  const msWaitDoneWhiteOut = 100,//400
+        msWaitDoneFadeIn = 200;//800
+
   //
-  appVm.$router.beforeResolve((to, from, next) => {
+  appVm.$router.beforeEach((to, from, next) => {
+  //appVm.$router.beforeRouteLeave((to, from, next) => {
 
     // Between child route, there is no effect.
     if (from.meta.isSubRoute && to.meta.isSubRoute) return next();
@@ -55,13 +62,13 @@ function attachFadeDuringSegue(appVm) {
     // Fade-out
     let el = getMask()
     el.style.display = 'block'
-    setTimeout(() => {
-      el.classList.add('whiteout')
-    }, 60);
-    setTimeout(() => {
-      next()
-    }, 350 );
+    el.classList.add('whiteout')
 
+    appVm.$nextTick(()=>{
+      setTimeout(() => {
+        next()
+      }, msWaitDoneWhiteOut );
+    })
   });
 
   //
@@ -74,9 +81,9 @@ function attachFadeDuringSegue(appVm) {
     //console.log('[router afterEach]')
     //console.dir(appVm)
     appVm.$children.forEach( vm => {
-      if (typeof vm.beforeStartFadeIn === 'function') {
-        vm.beforeStartFadeIn()
-      }
+      //if (typeof vm.beforeStartFadeIn === 'function') {
+      //  vm.beforeStartFadeIn()
+      //}
     });
 
     // Fade-in
@@ -84,9 +91,10 @@ function attachFadeDuringSegue(appVm) {
     el.classList.remove('whiteout')
     setTimeout(() => {
       el.style.display = 'none'
-    }, 500 );
+    }, msWaitDoneFadeIn );
 
   });
+*/
 }
 
 </script>
@@ -111,8 +119,8 @@ function attachFadeDuringSegue(appVm) {
 .mask {
   z-index: 5000;
   display: none;
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
+  position: fixed; top: 0; left: 0;
+  width: 100vw; height: 100vh;
 
   opacity: 0;
   transition: opacity 0.5s;

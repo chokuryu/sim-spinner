@@ -80,6 +80,23 @@ function guardCommonAsync() {
 const guardFunctions = {
 
   //
+  LoginEntryPage(to, from, next) {
+    guardCommonAsync().
+    then(outcome => {
+      if (outcome.shouldSignIn) {
+        // ログインが必要
+        return next();
+      }
+      // ログイン不要ならログインページは表示せずにhome画面へ
+      console.log('Auto confirmation ... login_entry -> under_login')
+      return next({
+        replace: false,
+        name: '@=under_login'
+      });
+    });
+  },
+
+  //
   HomePage(to, from, next) {
     guardCommonAsync().
     then(outcome => {

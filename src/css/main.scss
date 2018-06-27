@@ -44,6 +44,24 @@ i {
   vertical-align: initial;
 }
 
+@mixin max-screen($break-point) {
+  @media screen and (max-width: $break-point) {
+    @content;
+  }
+}
+
+@mixin min-screen($break-point) {
+  @media screen and (min-width: $break-point) {
+    @content;
+  }
+}
+
+@mixin screen($break-point-min, $break-point-max) {
+  @media screen and (min-width: $break-point-min) and (max-width: $break-point-max) {
+    @content;
+  }
+}
+
 /*
 .pagelayout-outer {
   position: relative;
@@ -223,15 +241,20 @@ i {
 
 /* ----- */
 
+$commonBgColorPale: #e7effb;//#d3e1ff;//#fafafd;
+$commonBgColorStandard: #7ca3e0;//#d1d9ea;
+
+$commonBorderColorPale: #d8d9e4;
+
 .my-backColor1 {
-  background-color: #fafafd;
+  background-color: $commonBgColorPale;
 }
 .my-backColor2 {
-  background-color: #d1d9ea;//#656565;//#888888;
+  background-color: $commonBgColorStandard;//#656565;//#888888;
   //color: white;
 }
 .my-maskColor {
-  background-color: #fbfbfc;
+  background-color: $commonBgColorPale;//#fbfbfc;
 }
 
 .my-container {
@@ -380,25 +403,7 @@ $bgcol4: #17181b;
   padding: 30px 0;
 }
 
-.doc-headline {
-  margin: 6px auto 4px auto;
-  color: #76899e;
 
-  h1 {
-    display: inline;
-    font-size: 2.0rem;//1.6rem;
-    margin: 0 0 0 6px;
-  }
-  i {
-    font-size: 25px;//22px
-    color: #0973fa;
-
-    background-image: linear-gradient(45deg, #0973fa, #598ed3);
-    color:transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
-}
 
 .doc-content {
   text-align: left;
@@ -427,32 +432,44 @@ $bgcol4: #17181b;
   justify-content: center;
 
    > * {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     margin: 0 10px;
   }
   > i {
     text-align: center;
-    line-height: 60px;
+    line-height: 100px;
   }
   .doc-grayIconColor {
     color: #b3bac5 !important;
   }
 }
 
+$table-headerColor: #f1f5fb;
+$table-cellColor: #fdfeff;
 .doc-normalTable {
   border-collapse: collapse;
   border: 1px #ddd solid;
+  background-color: $table-cellColor;
   tr {
 
   }
-  td {
+  td, th {
     padding: 12px;
-    border: 1px #ddd solid;
+    border: 1px $commonBorderColorPale solid;
+  }
+  th {
+    background-color: $table-headerColor;
+    color: #9ba8b7;
   }
   td:first-child {
     max-width: 40%;
     text-align: center;
+  }
+  @media screen and (min-width:0px) and (max-width:400px) {
+    td:first-child {
+      zoom: 0.5;
+    }
   }
   p {
     font-size: 0.85em;
@@ -460,7 +477,225 @@ $bgcol4: #17181b;
   }
 }
 
+.doc-pencilLine {
+  margin: 6px auto 4px auto;
+  color: #76899e;
+  line-height: 25px;
+
+  span {
+    display: inline;
+    font-size: 1.2rem;
+    margin: 0 0 0 6px;
+  }
+  i {
+    font-size: 25px;
+    color: #0973fa;
+
+    background-image: linear-gradient(45deg, #0973fa, #598ed3);
+    color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
 
 
+/*
+*
+* docnavi
+*
+*/
+
+$breakpoint-docnavi: 720px;
+
+.doc-logoType {
+  font-family: "Helvetica Neue";
+  font-weight: 600;
+  display: block;
+  font-size: 22px;
+  color: white;//#546778;
+  padding: 0px;
+}
+.docnavi-topHead {
+  position: absolute; top: 0; left: 0;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  z-index: 100;//fa-stackがmenu背景カバーの手前にきてしまうので
+  //border-bottom: 1px solid #ddd;
+
+  .docnavi-topHeadBottom {
+    position: absolute; bottom: 0; right: 0;
+    height: 2px; width: 90vw;
+      background-image: linear-gradient(270deg, #2b79d2, #083c7d, rgba(0,0,0,0));
+  }
+}
+
+
+.docnavi-leftBlock {
+  display: flex; justify-content: center;
+  text-align: left;
+  width: 200px; height: 76px; line-height: 60px;
+  padding: 8px;
+  margin: 0 auto 0 0;
+
+  a {
+    height: 60px;
+    margin: 0;
+  }
+  img {
+    width: 60px;
+    height: 60px;
+    padding: 8px;
+  }
+  span {
+    height: 60px;
+    margin: 0 auto 0 2px;
+    /*text-decoration-line: none;*/
+  }
+}
+
+
+.docnavi-rightBlock {
+  position: relative;
+  text-align: right;
+  width: calc(100% - 200px);
+  line-height: 76px;
+  /*background: #fbfbfe;*/
+
+  a {
+    text-decoration: none;
+    color: #acc3dc;//unset;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  .docnavi-signUpLink {
+    color: white;
+    font-weight: 600;
+  }
+  ul {
+    margin: 0;
+    padding: 0 20px;
+  }
+
+  .docnavi-list1 {
+    float: left;
+  }
+  .docnavi-list2 {
+    float: right;
+  }
+  li {
+    float: left;
+  }
+  .menuBtnBox {
+    display: none;
+  }
+
+  @include max-screen($breakpoint-docnavi) {
+    $listH: 440px - 20px;
+    $listBtm: -440px;
+    .menuBtnBox {
+      margin: auto 20px;
+      display: block;
+    }
+    .docnavi-listContainer {
+      //display: none;
+      position: absolute; left: 100%; bottom: $listBtm;
+      transition: left 0.3s;
+      width: calc(100vw - 20px); height: $listH;
+
+      background-color: white;//rgba(255,255,255,0.94);
+      border: 10px solid transparent;//#dbe1ec;
+      margin: 10px;
+      border-radius: 24px;
+    }
+    .docnavi-listContainer.open {
+      display: block;
+
+      //bottom: -400px;
+      left: -200px;
+      transition: left 0.5s;
+    }
+    $itemH: 60px;
+    .docnavi-list1, .docnavi-list2 {
+      float: none;
+      line-height: $itemH;
+      margin: 28px 20px;
+    }
+    li {
+      width: 100%; height: $itemH;
+      float: none;
+      margin: 0;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    a {
+      display: block;
+      width: 100%; height: $itemH;
+      //line-height: $itemH;
+      padding: 0 0 0 20px;
+      //color: gray;
+      font-weight: 600;
+    }
+    .docnavi-signUpLink {
+      color: #8aa1e6;
+      text-shadow: 0 0 2px #0095ff;
+    }
+    a:hover {
+      color: white;
+      background-color: $commonBgColorPale;
+    }
+  }
+}
+
+.docnavi-cover {
+  display: none;
+  position: fixed; top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  /*
+  filter: blur(5px);
+  */
+  background: rgba(43, 66, 93, 0.74);
+  backdrop-filter: contrast(4) blur(10px);
+}
+
+@include max-screen($breakpoint-docnavi) {
+  .docnavi-cover.open {
+    display: block;
+  }
+}
+
+//@media screen and (min-width:0px) and (max-width:720px) {
+//  .docnavi-cover.open {
+//    display: block;
+//  }
+//}
+
+/*
+*/
+.doc-topback-texts {
+  max-width: 72vw;
+  width: 500px;
+  text-align: left;
+  margin: 1.5em;
+  color: white;
+}
+.doc-topback-texts h1 {
+  font-size: 3rem;
+  font-size: calc(1.718em + 2.3vw);
+  line-height: 1.2;
+  color: rgba(255,255,255,0.95);;
+  /*
+  background-image: linear-gradient(315deg, #2b79d2, #083c7d);
+  color:transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  */
+}
+.doc-topback-texts p {
+  color: #ebf2f9;
+  font-weight: 600;
+  text-shadow: 0 0 3px #29548a;
+}
 
 

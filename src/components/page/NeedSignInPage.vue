@@ -6,14 +6,14 @@
     <h1>Out of session</h1>
     <div class="my-container">
       <div>
-        <p>You need a new web session. Please sign in from front page.</p>
+        <p>You need a new web session. Please log in from below.</p>
       </div>
     </div>
 
     <div class="my-horizontalSpacer"></div>
 
     <div class="my-container">
-      <div class="siimple-btn siimple-btn--navy" v-on:click="segueTopPage">Top</div>
+      <router-link tag="a" :to="{ name: '@=login_entry' }" class="siimple-btn siimple-btn--yellow"><i class="fas fa-arrow-right"></i><span>&nbsp;Log in</span></router-link>
     </div>
 
   </div>
@@ -38,7 +38,7 @@ export default {
   methods: {
 
     segueTopPage() {
-      this.$router.push({ name: '@=top' })
+      this.$router.push({ name: '@=login_entry' })
     }
 
   }

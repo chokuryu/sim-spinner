@@ -17,7 +17,7 @@
         <a class="siimple-btn siimple-btn--red" @click="startSignOut">
           <template v-if="isUnderSignOut"><i class="fas fa-spinner fa-spin"></i></template>
           <template v-else><i class="fas fa-sign-out-alt"></i></template>
-          <span>&nbsp;Sign out</span>
+          <span>&nbsp;Log out</span>
         </a>
       </div>
     </template>
@@ -60,7 +60,7 @@ export default {
       then(results => {
         let [ serviceResult ] = results
         if (serviceResult.completeSignOut) {
-          this.$router.push({ name: '@=top' })
+          this.$router.push({ name: '@=login_entry' })
         } else {
           alert('サインアウトに失敗しました')
         }
