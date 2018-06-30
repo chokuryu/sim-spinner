@@ -6,7 +6,7 @@ const MyFile = require('./MyFile')
 const extended = {};
 module.exports = extended;
 
-extended.preMake = function(option) {
+extended.afterMake = function(option) {
 
   //console.log(FAVICON_SOURCE)
 
