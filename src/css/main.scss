@@ -223,6 +223,11 @@ i {
   font-weight: 500;
   font-size: 1.2rem;
 }
+.naviframe-force-center {
+  width: 120px;
+  position: absolute; top: 0; left: 50%;
+  margin-left: -60px; text-align: center;
+}
 
 .my-title {
   font-family: "helvetica Neue";
@@ -693,9 +698,9 @@ $breakpoint-docnavi: 720px;
   */
 }
 .doc-topback-texts p {
-  color: #ebf2f9;
+  color: #fbfdff;
   font-weight: 600;
-  text-shadow: 0 0 3px #29548a;
+  text-shadow: 0 0 3px #133258;
 }
 
 

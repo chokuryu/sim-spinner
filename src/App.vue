@@ -44,17 +44,22 @@ export default {
  * ページ遷移時のフェードアニメーションをルータのイベントに追加
  */
 function attachFadeDuringSegue(appVm) {
-/*
+
+  // historyAPIによるstate変更直後のスクロール位置自動復元を無効にする
+  if ('scrollRestoration' in window.history) {
+    //console.log('Manual scroll restoration is exist.')
+    history.scrollRestoration = 'manual'
+  }
+
   function getMask() {
     return document.querySelector('.mask')
   }
 
-  const msWaitDoneWhiteOut = 100,//400
-        msWaitDoneFadeIn = 200;//800
+  const msWaitDoneWhiteOut = 300,//400
+        msWaitDoneFadeIn = 300;//800
 
   //
   appVm.$router.beforeEach((to, from, next) => {
-  //appVm.$router.beforeRouteLeave((to, from, next) => {
 
     // Between child route, there is no effect.
     if (from.meta.isSubRoute && to.meta.isSubRoute) return next();
@@ -62,13 +67,19 @@ function attachFadeDuringSegue(appVm) {
     // Fade-out
     let el = getMask()
     el.style.display = 'block'
-    el.classList.add('whiteout')
+
+    // ふつうにフェードアウトする。
+    setTimeout(() => {
+      el.classList.add('whiteout')
+    }, 50)
+
 
     appVm.$nextTick(()=>{
       setTimeout(() => {
         next()
       }, msWaitDoneWhiteOut );
     })
+
   });
 
   //
@@ -78,13 +89,11 @@ function attachFadeDuringSegue(appVm) {
     if (from.meta.isSubRoute && to.meta.isSubRoute) return;
 
     // Fire Original Event Hook for PageVM
-    //console.log('[router afterEach]')
-    //console.dir(appVm)
-    appVm.$children.forEach( vm => {
-      //if (typeof vm.beforeStartFadeIn === 'function') {
-      //  vm.beforeStartFadeIn()
-      //}
-    });
+    // appVm.$children.forEach( vm => {
+    //   if (typeof vm.beforeStartFadeIn === 'function') {
+    //     vm.beforeStartFadeIn()
+    //   }
+    // });
 
     // Fade-in
     let el = getMask()
@@ -94,7 +103,7 @@ function attachFadeDuringSegue(appVm) {
     }, msWaitDoneFadeIn );
 
   });
-*/
+
 }
 
 </script>

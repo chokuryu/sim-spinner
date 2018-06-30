@@ -10,12 +10,23 @@ import Resource from '@/scripts/Resource'
 
 //
 export default {
+  setRouter(router) {
+    router.beforeResolve((to, from, next) => {
+      const componentName = to.matched[0].components.default.name
+      if (guardFunctions[componentName]) {
+        guardFunctions[componentName](to, from, next)
+      } else {
+        next()
+      }
+    })
+  },
   attach(ViewModel) {
     if (!guardFunctions[ViewModel.name]) {
       throw Error('Navigation Guard Function is not exist.')
     }
-    ViewModel.beforeRouteEnter = guardFunctions[ViewModel.name]
-    ViewModel.beforeRouteUpdate = guardFunctions[ViewModel.name]
+
+    //ViewModel.beforeRouteEnter = guardFunctions[ViewModel.name]
+    //ViewModel.beforeRouteUpdate = guardFunctions[ViewModel.name]
   }
 }
 
@@ -23,7 +34,7 @@ export default {
 const makeRoute = {
   needSignIn() {
     return {
-      replace: false,
+      replace: true,
       name: '@=need_sign_in'
     };
   },
@@ -105,6 +116,21 @@ const guardFunctions = {
       // If ok
       next()
     });
+  },
+
+  //
+  WorkPage(to, from, next) {
+    guardCommonAsync().
+    then(outcome => {
+      if (outcome.shouldSignIn) return next(makeRoute.needSignIn());
+
+      // Check accessibility (Work)
+      if (validations.hasValidWork(to)) {
+        next()
+      } else {
+        next(makeRoute.notFound(to.fullPath))
+      }
+    })
   },
 
   //

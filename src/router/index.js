@@ -20,16 +20,6 @@ import NotFound from '@/components/page/NotFound'
 Vue.use(Router)
 
 
-
-// Set navigation guard to Page-Component if needed
-import NavigationGuard from '@/scripts/NavigationGuard'
-NavigationGuard.attach(LoginEntryPage)
-NavigationGuard.attach(HomePage)
-NavigationGuard.attach(WorkContent)
-NavigationGuard.attach(FactorContent)
-NavigationGuard.attach(PreviewPage)
-//
-
 //
 const NSO = '/SPA';
 
@@ -37,20 +27,21 @@ const NSO = '/SPA';
 export default new Router({
   mode: 'history',
   scrollBehavior (to, from, savedPosition) {
-    if (savedPosition) {
-      return(savedPosition)
-    } else {
-      return({ x: 0, y: 0 })
-    }
-    // return new Promise((resolve, reject) => {
-    //   setTimeout(() => {
-    //     if (savedPosition) {
-    //       resolve(savedPosition)
-    //     } else {
-    //       resolve({ x: 0, y: 0 })
-    //     }
-    //   }, 0);
-    // });
+    // if (savedPosition) {
+    //   return(savedPosition)
+    // } else {
+    //   return({ x: 0, y: 0 })
+    // }
+    return new Promise((resolve, reject) => {
+      //console.dir(savedPosition)
+      setTimeout(() => {
+        if (savedPosition) {
+          resolve(savedPosition)
+        } else {
+          resolve({ x: 0, y: 0 })
+        }
+      }, 0);
+    });
   },
 
   // 公開Webサイト適合パス設定③

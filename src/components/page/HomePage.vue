@@ -10,9 +10,12 @@
             <img src="@/assets/logo.png"/>
           </a>
         </div>
+
+        <div class="naviframe-force-center"><i class="fas fa-home"></i>&nbsp;Home</div>
+
         <div class="naviframe-right">
           <!-- User name -->
-          <span class="" style="font-size:1rem;">Guest</span>
+          <!--<span class="" style="font-size:1rem;">Guest</span>-->
           <!-- User avater -->
           <span
             @click="modalUserProfileShown = true"

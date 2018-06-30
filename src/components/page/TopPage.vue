@@ -29,10 +29,10 @@
           <i class="fas fa-child fa-stack-1x fa-inverse"></i>
         </span>
       </div>
-      <h2 class="siimple-h3">There is no service available</h2>
+      <h2 class="siimple-h3">There is no service available here</h2>
 
       <div class="doc-content">
-        <p>このWebサイトは練習用につくったダミーのWebサービスなのでサービス登録などはできませんが、誰でもログイン画面から入って機能を試すことができます。もし気に入ったら、いつかサービス化されるのを待ちましょう！</p>
+        <p>このWebサイトは実験用につくったダミーのWebサービスなのでサービス登録などはできません。ただ、誰でもログイン画面から入って機能を試すことができますので遊んでみてください。もし気に入ったら、いつか製品化されるのを待ちましょう！</p>
       </div>
 
       <br/>
@@ -50,7 +50,7 @@
       </div>
       <h2 class="siimple-h3">Production note</h2>
       <div class="doc-content">
-        <p>このSPA（シングル・ページ・アプリケーション）は個人的なフロントエンドの練習用につくりました。どのようにつくったかをここに書き記しているのでぜひチェックしてみてください。</p>
+        <p>SimSpinnerは個人的なSPA制作の実験用としてつくりました。制作内容について一部をここに書き記しているのでぜひチェックしてみてください。</p>
       </div>
       <br/>
       <router-link tag="a" :to="{ name: '@=design' }" class="siimple-btn siimple-btn--teal">Check features</router-link>

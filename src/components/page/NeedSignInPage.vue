@@ -38,7 +38,7 @@ export default {
   methods: {
 
     segueTopPage() {
-      this.$router.push({ name: '@=login_entry' })
+      this.$router.replace({ name: '@=login_entry' })
     }
 
   }

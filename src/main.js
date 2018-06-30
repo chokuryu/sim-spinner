@@ -12,9 +12,13 @@ import Vue from 'vue'
 import App from '@/App'
 import router from '@/router'
 
+import NavigationGuard from '@/scripts/NavigationGuard'
 import Resource from '@/scripts/Resource'
-Resource.setup()
 import Store from '@/scripts/Store'
+
+NavigationGuard.setRouter(router)
+Resource.setup()
+
 
 Vue.config.productionTip = false
 Vue.config.errorHandler = function(err, vm, info) {

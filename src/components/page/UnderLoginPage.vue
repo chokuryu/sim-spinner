@@ -51,7 +51,7 @@ export default {
       let b = new Promise((resolve, reject) => {
         setTimeout(() => {
           resolve();
-        }, 1500)
+        }, 1000)
       });
       //
       Promise.all([
@@ -60,7 +60,7 @@ export default {
       ]).then((results)=>{
         let [ serviceResult, nomean ] = results
         //console.log('Back from setup')
-        console.dir(serviceResult)
+        //console.dir(serviceResult)
         let name = serviceResult.completeSignIn ? nextRouteName : '@=top';
         this.$router.replace({
           name,
