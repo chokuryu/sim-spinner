@@ -29,10 +29,10 @@
           <i class="fas fa-child fa-stack-1x fa-inverse"></i>
         </span>
       </div>
-      <h2 class="siimple-h3">There is no service available here</h2>
+      <h2 class="siimple-h3">This is only demo site</h2>
 
       <div class="doc-content">
-        <p>このWebサイトは実験用につくったダミーのWebサービスなのでサービス登録などはできません。ただ、誰でもログイン画面から入って機能を試すことができますので遊んでみてください。もし気に入ったら、いつか製品化されるのを待ちましょう！</p>
+        <p>このWebサイトは実験用につくったダミーのWebサービスなのでサービス登録などはできません。ただ、誰でもログイン画面から入って機能を試すことができますので遊んでみてください。</p>
       </div>
 
       <br/>

@@ -11,7 +11,10 @@
           <td><label class="siimple-label">Type:</label></td>
           <td>
             <select class="siimple-select" v-model="selected">
-              <option v-for="(item, index) in items" v-bind:value="{ value : item.type }">{{ item.label }}</option>
+              <option
+                v-for="(item, index) in items" :key="index"
+                :value="{ value : item.type }"
+              >{{ item.label }}</option>
             </select>
           </td>
         </tr>

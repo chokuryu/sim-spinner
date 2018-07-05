@@ -39,7 +39,6 @@ export default {
       fidList
     }
   },
-  props: ['wid'],
   computed: {
 
   },

@@ -1,10 +1,13 @@
 <template>
 <div class="factor-frame" ref="el_frame">
-  <template v-for="(factor) in factors">
-    <div v-if="factor.type === 'CIRCLE'"  :data-fid="factor.id" class="factor-item-circle" :class="{opq:shouldOpq(factor.id)}"></div>
-    <div v-if="factor.type === 'TEXT'"  :data-fid="factor.id" class="factor-item-text" :class="{opq:shouldOpq(factor.id)}"></div>
-    <div v-if="factor.type === 'RECT'"  :data-fid="factor.id" class="factor-item-rect" :class="{opq:shouldOpq(factor.id)}"></div>
-  </template>
+  <div
+    v-for="(factor) in factors" :key="factor.id"
+    :data-fid="factor.id"
+    :class="[
+      classByType(factor),
+      { opq : shouldOpq(factor.id) }
+    ]"
+  ></div>
 </div>
 </template>
 
@@ -19,6 +22,9 @@ export default {
     return {
       factors: []
     }
+  },
+  computed: {
+
   },
   mounted() {
     Styler.addConstCssToBodyOnce()
@@ -37,6 +43,14 @@ export default {
     // }
   },
   methods: {
+    classByType (factor) {
+      return (
+        factor.type === 'CIRCLE' ? 'factor-item-circle' :
+        factor.type === 'TEXT' ? 'factor-item-text' :
+        factor.type === 'RECT' ? 'factor-item-rect' :
+        ''
+      );
+    },
     //
     start() {
       let dict = Store.referFactorDictOf(this.wid)

@@ -3,7 +3,10 @@
 * js
 *
 */
-import '@/scripts/js.cookie'
+
+// js-cookie can not call with import. So, use require.
+const Cookies = require('js-cookie/src/js.cookie')
+// import Cookies from 'js-cookie/src/js.cookie'
 
 //
 const Resource = {
