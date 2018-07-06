@@ -31,7 +31,7 @@
         <div class="pictFrame">
           <img src="@/assets/about/res.png"/>
         </div>
-        <p>メインユースにモバイルを想定し、部分的にPCに合わせるデザインにしてみました。縦スクロールを有効利用するため、SPAらしいフルスクリーン画面にはこだわっていません。</p>
+        <p>メインユースにモバイルを想定し、部分的にPCに合わせるデザインを試してみました。縦スクロールを有効利用するため、SPAらしいフルスクリーン画面にはこだわっていません。</p>
       </div>
       <div class="my-horizontalSpacer"></div>
     </section>
@@ -45,7 +45,7 @@
         <div class="my-horizontalSpacer mini"></div>
         <p>上図はルーティングと画面の主だった対応関係をまとめたものです。静的なHTMLとSPAの機能はまとめてWebpackでビルドしています。( / と /design はプリレンダリング)</p>
         <p>SPAのルーティング上のみで提供するルート(ディレクトリもファイルもない)はそのままではHTTPリクエストには対応しないため、/SPA/配下にパスをまとめておき、それらのパスへのHTTPリクエストに対しては静的ファイルサーバで/_spa.htmlというファイルを参照するようにプロキシを設定しています。</p>
-        <p class="siimple-small">（＊プリレンダリングはやはり固定ページのみのSEO対応程度にしか使えなさそうなことがわかった。動的なコンテンツでSEO・OGP対応のSPAにするならnuxtとかでSSRしないとうまく納まらなさそうだ。）</p>
+        <p class="siimple-small">（＊プリレンダリングはやはり固定ページのみのSEO対応程度にしか使えなさそうなことがわかった。動的なコンテンツでSEO・OGP対応のSPAにするならnuxtとかでSSRしないとうまく納まらなさそう。）</p>
       </div>
       <div class="my-horizontalSpacer"></div>
     </section>
@@ -87,7 +87,7 @@
               <div>Webpack</div>
             </td>
             <td>
-              <p>vue-cli生成のconfigの構成をあまり変えずにそのまま利用。vue-loaderや各種pluginによる処理の全体像がいまだにはっきりわからない。</p>
+              <p>今回はvue-cli生成のconfigの構成をあまり変えずにそのまま利用。vue-loaderや各種pluginによる処理の全体像は正直言ってはっきり把握できてない。</p>
               <p>それでも、標準的な使い方からあまり外れなければ素直に動いてくれて快適。</p>
           </td>
           </tr>
@@ -124,7 +124,7 @@
               <div><a href="https://www.netlify.com">Netlify</a></div>
             </td>
             <td>
-              <p>どこに公開しようか迷っていたのだがこのサービスを使ってみたらすごく良かった。私のGitHubのproductionリポジトリにpushするとでNetlifyのサービス側でそれを検知し、任意のビルドコマンドを実行してくれて、オートでデプロイしてくれる。<br/>
+              <p>どこに公開しようか迷っていたのだがこのサービスを使ってみたらすごく良かった。私のGitHubのproductionリポジトリにpushするとでNetlifyのサービス側でそれを検知し、任意のビルドコマンドを実行してくれて、オートでデプロイされる。<br/>
             （例として、このプロジェクトではビルドコマンドに<span class="siimple-code">node build/build.js</span>を指定し、dist/ を公開ディレクトリに指定している。）</p>
               <p></p>
             </td>
@@ -149,7 +149,7 @@
       <div class="bigLogoFrame"><img src="@/assets/logox4.png"/></div>
       <div class="my-horizontalSpacer micro"></div>
       <div class="doc-content">
-        <p>おまけ。ロゴは Affinity Designer で描きました。まあグラフィックはほとんど書かないので適当です。小さいサイズで表示するとすごく微妙…。</p>
+        <p>おまけ。ロゴは Affinity Designer で描きました。まあグラフィックはほとんど書かないので適当です。小さいサイズで表示すると線が細くて微妙…。</p>
       </div>
       <!--<div class="doc-pencilLine">
         <i class="fa fa-pencil-alt"></i>

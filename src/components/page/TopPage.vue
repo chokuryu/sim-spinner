@@ -50,7 +50,8 @@
       </div>
       <h2 class="siimple-h3">Production note</h2>
       <div class="doc-content">
-        <p>SimSpinnerは個人的なSPA制作の実験用としてつくりました。制作内容について一部をここに書き記しているのでぜひチェックしてみてください。</p>
+        <p>このSimSpinnerには部品を組み合わせてスピナーをつくれるというあまり実用性のない機能が実装されているのですが、主にSPAの構造実験が目的なのでそこは思いつきでした。</p>
+        <p>実験内容であるSPAの構成等について一部をここに書き記しているのでぜひチェックしてみてください。</p>
       </div>
       <br/>
       <router-link tag="a" :to="{ name: '@=design' }" class="siimple-btn siimple-btn--teal">Check features</router-link>
