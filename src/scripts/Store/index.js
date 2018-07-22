@@ -13,14 +13,10 @@ export default (function(){
     //
     isInitialized: false,
     //
-    initializeAsync( mode = 'normal' ) {
-      //
-      if (mode === 'test') {
-        return alert('Under construction.')
-      }
-      //
+    initializeAsync () {
+
       storageIO = new StorageIO()
-      //
+
       return new Promise((resolve, reject) => {
         Promise.resolve().
         then(res => storageIO.setupFromLocalStorageAsync()).
@@ -31,12 +27,29 @@ export default (function(){
         catch((err) => {
           alert('Failed to initializeAsync on StorageIO.')
           console.error(err.message)
+          reject(err)
         });
       });
     },
     //
+    initializeForTest () {
+
+      storageIO = new StorageIO()
+
+      storageIO.setupForTest()
+      this.isInitialized = true
+    },
+    //
     canUseLocalStorage() {
       return storageIO.checkCanUseLS();
+    },
+    //
+    destroy () {
+      storageIO = null;
+      for (let key in this.listeners) {
+        delete this.listeners[key]
+      }
+      this.isInitialized = false
     },
 
     //
@@ -95,6 +108,7 @@ export default (function(){
     },
     publishFactorUpdate(fid) {
       storageIO.saveLazy()
+      if (typeof this.listeners[fid] !== 'function') return
       this.listeners[fid]()
     },
     unsubscribeFactorsUpdate() {
