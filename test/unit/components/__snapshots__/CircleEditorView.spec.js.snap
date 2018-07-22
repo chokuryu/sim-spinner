@@ -1,0 +1,233 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CircleEditorView - unit should render correct contents 1`] = `
+<div
+  class="siimple-grid"
+>
+  <div
+    class="siimple-grid-row"
+  >
+    <div
+      class="siimple-grid-col siimple-grid-col--6 siimple-grid-col-md--12 siimple-grid-col-sm--12"
+    >
+      <div
+        class="row siimple-label"
+      >
+        <label>
+          Name:
+        </label>
+         
+        <div>
+          <input
+            class="siimple-input"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+       
+      <div
+        class="row siimple-label"
+      >
+        <label>
+          Type:
+        </label>
+         
+        <div>
+          <input
+            class="siimple-input dis"
+            readonly="readonly"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+       
+      <div
+        class="row siimple-label"
+      >
+        <label>
+          Radius:
+        </label>
+         
+        <div>
+          <input
+            class="siimple-input"
+            max="100"
+            min="10"
+            step="10"
+            type="range"
+            value=""
+          />
+           
+          <span>
+            60
+          </span>
+          <span
+            class="afterfield"
+          >
+            px
+          </span>
+        </div>
+      </div>
+       
+      <div
+        class="row siimple-label"
+      >
+        <label>
+          Speed:
+        </label>
+         
+        <div>
+          <input
+            class="siimple-input"
+            max="2"
+            min="0.1"
+            step="0.1"
+            type="range"
+            value=""
+          />
+           
+          <span>
+            0.6
+          </span>
+          <span
+            class="afterfield"
+          >
+            s
+          </span>
+        </div>
+      </div>
+       
+      <div
+        class="row siimple-label"
+      >
+        <label>
+          Posision:
+        </label>
+         
+        <div>
+          <input
+            class="siimple-input"
+            max="50"
+            min="-50"
+            step="10"
+            type="range"
+            value=""
+          />
+           
+          <span>
+            0
+          </span>
+          <span
+            class="afterfield"
+          >
+             px
+          </span>
+        </div>
+      </div>
+    </div>
+     
+    <div
+      class="siimple-grid-col siimple-grid-col--6 siimple-grid-col-md--12 siimple-grid-col-sm--12"
+    >
+      <div
+        class="row siimple-label"
+      >
+        <label>
+          color R:
+        </label>
+         
+        <div>
+          <input
+            class="siimple-input"
+            max="255"
+            min="0"
+            step="1"
+            type="range"
+            value=""
+          />
+           
+          <span>
+            (75)
+          </span>
+        </div>
+      </div>
+       
+      <div
+        class="row siimple-label"
+      >
+        <label>
+          color G:
+        </label>
+         
+        <div>
+          <input
+            class="siimple-input"
+            max="255"
+            min="0"
+            step="1"
+            type="range"
+            value=""
+          />
+           
+          <span>
+            (164)
+          </span>
+        </div>
+      </div>
+       
+      <div
+        class="row siimple-label"
+      >
+        <label>
+          color B:
+        </label>
+         
+        <div>
+          <input
+            class="siimple-input"
+            max="255"
+            min="0"
+            step="1"
+            type="range"
+            value=""
+          />
+           
+          <span>
+            (230)
+          </span>
+        </div>
+      </div>
+       
+      <div
+        class="row siimple-label"
+      >
+        <label>
+          Thin:
+        </label>
+         
+        <div>
+          <input
+            class="siimple-input"
+            max="10"
+            min="1"
+            step="1"
+            type="range"
+            value=""
+          />
+           
+          <span>
+            (2)
+          </span>
+          <span
+            class="afterfield"
+          >
+            px
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
