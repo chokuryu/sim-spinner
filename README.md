@@ -1,6 +1,7 @@
 # sim-spinner
 
-> A single page app project.
+  いろいろ実験するためにつくってみたSPAのプロジェクトです。
+  クライアントサイドのみ。
 
 ## Build Setup
 
@@ -24,4 +25,23 @@ npm run unit
 npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+---
+
+![画像](https://github.com/chokuryu/sim-spinner/raw/extra/extra_src/simspinner_readme1.png)
+
+## 試していること
+
+- vue
+    - vue-cli ( webpackテンプレート )
+    - 単一ファイルコンポーネント
+    - プリレンダリング
+    - vue-router
+- eslint
+- jest
+    - vue-test-utils
+- netlify利用
+- webpack
+    - css-loaderまわり
+    - compile前のnode_modulesからsrc内への外部ライブラリのコピー
+
+
