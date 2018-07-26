@@ -1,3 +1,4 @@
+/* eslint-disable */
 
 describe('experiment for jest matcher', () => {
   test('aaaaa', () => {

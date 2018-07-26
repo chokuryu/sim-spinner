@@ -72,7 +72,7 @@ sub.copyLib = function (option = {}) {
       if (isTargetDir(targets[i])) {
         // Dirの場合
         const newDir = intoDir + '/' + name
-        await fs.ensureDirS(newDir)
+        await fs.ensureDir(newDir)
         await fs.copy(targets[i], newDir)//再帰コピー
       } else {
         // Fileの場合

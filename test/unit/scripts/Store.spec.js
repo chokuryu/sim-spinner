@@ -217,11 +217,10 @@ describe('Store - with localstorage', () => {
     .catch(err => {
       console.log('It is unexpected on test.')
       throw err
-      expect(Store.isInitialized).toBe(false)
-
-      // FIN
-      localStorage.setItem.mockClear()
-      done()
+      // expect(Store.isInitialized).toBe(false)
+      // // FIN
+      // localStorage.setItem.mockClear()
+      // done()
     })
 
   })
