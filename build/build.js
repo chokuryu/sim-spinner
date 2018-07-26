@@ -10,11 +10,19 @@ const chalk = require('chalk')
 const webpack = require('webpack')
 const config = require('../config')
 const webpackConfig = require('./webpack.prod.conf')
-const extended = require('./extended')
+const afterBuilt = require('./afterBuilt')
+const beforeCompile = require('./beforeCompile')
+
 
 //
-function all() {
+async function all() {
 
+  // Build前処理
+  //
+  const result = await beforeCompile()
+  if (result.hasError) return process.exit(1)
+
+  // Buildメイン処理(webpack)
   //
   const spinner = ora('building for production...')
   spinner.start()
@@ -26,7 +34,17 @@ function all() {
       spinner.stop()
       if (err) throw err
 
+      // Build結果ハンドリング
+      //
       finish(stats)
+
+      // Build後追加処理(faviconを出力されたdistに追加)
+      //
+      afterBuilt({
+        FAVICON_SOURCE: path.resolve(__dirname, '../favicon.ico'),
+        FAVICON_OUTPUT: path.resolve(__dirname, '../dist/favicon.ico'),
+      })
+      .catch(err => { throw err })
     })
 
   })
@@ -37,7 +55,7 @@ all();
 
 
 //
-async function finish(stats) {
+function finish (stats) {
 
   process.stdout.write(stats.toString({
     colors: true,
@@ -57,22 +75,5 @@ async function finish(stats) {
     '  Tip: built files are meant to be served over an HTTP server.\n' +
     '  Opening index.html over file:// won\'t work.\n'
   ))
-
-  //
-  // 追加処理
-  //
-  console.log('\n======[additional build]=====\n')
-  console.log('start afterMake...')
-  try {
-    let result = await extended.afterMake({
-      FAVICON_SOURCE: path.resolve(__dirname, '../favicon.ico'),
-      FAVICON_OUTPUT: path.resolve(__dirname, '../dist/favicon.ico'),
-    })
-  } catch (err) {
-    console.log('!!!! error at afterMake')
-    console.error(err)
-    return
-  }
-  console.log('end afterMake...')
 
 }

@@ -69,26 +69,26 @@ exports.cssLoaders = function (options) {
 }
 
 // Generate loaders for standalone style files (outside of .vue)
-exports.styleLoaders = function (options) {
+// スタイル定義ファイルのローダールールを生成(単一ファイルコンポーネント内定義のstyle以外)
+exports.createStyleLoaderRules = function (options) {
   const output = []
   const loaders = exports.cssLoaders(options)
 
-
-  let libDirName = 'extlib';
-  let custom = options.targetExtlib ? `^.*${libDirName}\\/.*` : `^(?!.*${libDirName}\\/).*`;
+  // Please designate a dir name for using style loader.
+  if (!options.dirName) throw Error('no dir name indicated.')
 
   for (const extension in loaders) {
     const loader = loaders[extension]
     output.push({
-      test: new RegExp( custom + '\\.' + extension + '$'),
+      test: new RegExp( `^.*${options.dirName}\\/.*` + '\\.' + extension + '$'),
       use: loader
     })
   }
 
-
   return output
 }
 
+//
 exports.createNotifierCallback = () => {
   const notifier = require('node-notifier')
 

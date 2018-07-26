@@ -20,18 +20,18 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: [
       //
-      ...utils.styleLoaders({
+      ...utils.createStyleLoaderRules({
         sourceMap: config.dev.cssSourceMap,
         extract: false,
         usePostCSS: true,
-        targetExtlib: false,
+        dirName: 'originalStyles',
       }),
       //
-      ...utils.styleLoaders({
+      ...utils.createStyleLoaderRules({
         sourceMap: config.dev.cssSourceMap,
         extract: false,
         usePostCSS: false,
-        targetExtlib: true,
+        dirName: 'externalLib',
       })
     ]
   },

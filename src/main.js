@@ -1,9 +1,9 @@
 
 // Do not using post css loader
-import '@/extlib/fontawesome-free/css/all.css'
-import '@/extlib/siimple_custom.css'
+import '@/externalLib/fontawesome-free/css/all.css'
+import '@/externalLib/siimple.min.css'
 // Original css
-import '@/css/main.scss'
+import '@/originalStyles/main.scss'
 
 
 // The Vue build version to load with the `import` command

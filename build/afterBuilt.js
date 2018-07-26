@@ -1,21 +1,26 @@
-// extended.js
 'use strict';
 const path = require('path')
 const MyFile = require('./MyFile')
 
-const extended = {};
-module.exports = extended;
+module.exports = function(option) {
 
-extended.afterMake = function(option) {
+  console.log('\n======[additional build]=====\n')
+  console.log('start afterBuilt...')
 
-  //console.log(FAVICON_SOURCE)
+  const result = {
+    hasError: false
+  }
 
   return Promise.resolve()
   .then(arg => copyFavicon(option))
+  .catch((err) => {
+    console.log('!!!! error at afterBuilt')
+    console.error(err)
+    result.hasError = true
+  })
   .then(arg => {
-    return {
-      succeeded: true
-    };
+    console.log('end afterBuilt...')
+    return result
   })
 
 };

@@ -37,7 +37,6 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      //'$$fontawesome': resolve(__dirname, 'node_modules/@fontawesome'),
     }
   },
   module: {
